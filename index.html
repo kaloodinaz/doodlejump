@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <link rel="manifest" href="/manifest.json" />
+<meta name="theme-color" content="#151515" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ドゥードルジャンプ - 無料オンラインゲーム | 楽しいジャンピングアドベンチャー</title>
+    <meta name="description" content="無料でプレイできるドゥードルジャンプゲーム！可愛いキャラクターと一緒に高く跳んで、最高スコアを目指そう。PC、タブレット、スマートフォン対応の楽しいアクションゲームです。">
+    <meta name="keywords" content="ドゥードルジャンプ, 無料ゲーム, オンラインゲーム, ジャンプゲーム, アクションゲーム, ブラウザゲーム">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Doodle Jump Game">
+    <meta property="og:title" content="ドゥードルジャンプ - 無料オンラインゲーム">
+    <meta property="og:description" content="無料でプレイできるドゥードルジャンプゲーム！可愛いキャラクターと一緒に高く跳んで、最高スコアを目指そう。">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgdmlld0JveD0iMCAwIDEyMCAxMjAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIiByeD0iMjAiIGZpbGw9IiM0Q0FGNTAIP"/>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTIiIGZpbGw9IiM0Q0FGNTAIP<cmVjdCB4PSIxNiIgeT0iNDAiIHdpZHRoPSIzMiIgaGVpZ2h0PSI0IiByeD0iMiIgZmlsbD0iI0ZGRiIvPgo8Y2lyY2xlIGN4PSIzMiIgY3k9IjMyIiByPSI4IiBmaWxsPSIjRkY5ODAwIi8+CjxjaXJjbGUgY3g9IjI4IiBjeT0iMjgiIHI9IjIiIGZpbGw9IiMwMDAiLz4KPGNpcmNsZSBjeD0iMzYiIGN5PSIyOCIgcj0iMiIgZmlsbD0iIzAwMCIvPgo8cGF0aCBkPSJNMjggMzZMMzIgMzJMMzYgMzYiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KPC9zdmc+">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', 'Hiragino Kaku Gothic Pro', 'Meiryo', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .header h1 {
+            color: #fff;
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        .header p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .game-container {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+
+        .main-game {
+            flex: 1;
+            min-width: 300px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        .game-header {
+            background: linear-gradient(45deg, #4CAF50, #45a049);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .game-header h2 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            backdrop-filter: blur(10px);
+        }
+
+        .btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .fullscreen-btn {
+            background: linear-gradient(45deg, #FF6B6B, #FF5252);
+        }
+
+        .iframe-container {
+            position: relative;
+            width: 100%;
+            height: 600px;
+        }
+
+        .iframe-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+
+        .fullscreen-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: #000;
+            z-index: 9999;
+            display: none;
+        }
+
+        .fullscreen-overlay iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .close-fullscreen {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 20px;
+            z-index: 10000;
+            backdrop-filter: blur(10px);
+        }
+
+        .close-fullscreen:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .sidebar {
+            width: 300px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .ad-space {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            height: 130px;
+            width: 100%;
+            max-width: 728px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px dashed #ccc;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .features {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .features h3 {
+            color: #4CAF50;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .features ul {
+            list-style: none;
+        }
+
+        .features li {
+            padding: 8px 0;
+            color: #555;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .features li:before {
+            content: "🎮";
+            position: absolute;
+            left: 0;
+        }
+
+        .seo-content {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 20px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            line-height: 1.6;
+        }
+
+        .seo-content h3 {
+            color: #4CAF50;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .seo-content p {
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .header p {
+                font-size: 1rem;
+            }
+
+            .game-container {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                order: -1;
+            }
+
+            .ad-space {
+                display: none; /* Hide ads on mobile */
+            }
+
+            .controls {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .btn {
+                padding: 12px 20px;
+                font-size: 14px;
+            }
+
+            .iframe-container {
+                height: 500px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                padding: 20px 15px;
+            }
+
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .iframe-container {
+                height: 400px;
+            }
+        }
+
+        /* Tablet specific */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .ad-space {
+                max-width: 100%;
+                height: 110px;
+            }
+            
+            .sidebar {
+                width: 250px;
+            }
+        }
+
+        /* Desktop only ads */
+        @media (min-width: 1025px) {
+            .ad-space {
+                height: 90px;
+                width: 728px;
+                max-width: 728px;
+                margin: 0 auto;
+            }
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+    </style>
+</head>
+<body>
+   <script>
+    if('serviceWorker' in navigator) {window.addEventListener('load', () => {navigator.serviceWorker.register('/sw.js')
+    .then(registration => {console.log('Service Worker registered successfully:', registration);})
+    .catch(error => {console.log('Error in Service Worker registration:', error);});});}
+    </script>
+    <div class="container">
+        <header class="header">
+            <h1>🎮 ドゥードルジャンプ</h1>
+            <p>無料で楽しめる最高のジャンピングゲーム！高く跳んで記録を更新しよう！</p>
+        </header>
+
+        <div class="game-container">
+            <main class="main-game">
+                <div class="game-header">
+                    <h2>🚀 ゲームを開始</h2>
+                    <p>キャラクターを操作して、できるだけ高く跳躍しよう！</p>
+                    <div class="controls">
+                        <button class="btn" onclick="refreshGame()">🔄 リセット</button>
+                        <button class="btn fullscreen-btn" onclick="toggleFullscreen()">📱 フルスクリーン</button>
+                    </div>
+                </div>
+                <div class="iframe-container">
+                    <iframe id="gameFrame" src="https://doodlecricketunblocked.netlify.app/doodle-jump" allowfullscreen></iframe>
+                </div>
+            </main>
+
+            <aside class="sidebar">
+                <!-- PC Only Ad Space -->
+                <div class="ad-space" id="adSpace">
+                    <div>
+                   <script type="text/javascript">
+     atOptions = {
+       'key' : 'd1d26e15f7c349fd8e403bb5ea491a31',
+       'format' : 'iframe',
+       'height' : 90,
+       'width' : 728,
+       'params' : {}
+     };
+   </script>
+   <script type="text/javascript" src="//www.highperformanceformat.com/d1d26e15f7c349fd8e403bb5ea491a31/invoke.js"></script>
+                    </div>
+                </div>
+
+                <div class="features">
+                    <h3>🎯 ゲームの特徴</h3>
+                    <ul>
+                        <li>シンプルで楽しい操作</li>
+                        <li>無限に続くジャンプアクション</li>
+                        <li>様々なパワーアップアイテム</li>
+                        <li>スコアランキング機能</li>
+                        <li>全デバイス対応</li>
+                        <li>完全無料プレイ</li>
+                    </ul>
+                </div>
+            </aside>
+        </div>
+
+        <section class="seo-content">
+            <h3>🎮 ドゥードルジャンプについて</h3>
+            <p>ドゥードルジャンプは、世界中で愛され続けているクラシックなアクションゲームです。可愛らしいキャラクターを操作して、プラットフォームからプラットフォームへと跳び移り、できるだけ高い場所を目指すシンプルで奥深いゲームプレイが特徴です。</p>
+            
+            <p>このゲームの魅力は、そのシンプルさにあります。基本的な操作は左右の移動だけで、誰でもすぐに楽しむことができます。しかし、高いスコアを狙うには戦略的な思考と素早い反応が必要となり、初心者から上級者まで長時間楽しめる設計になっています。</p>
+            
+            <p>PC、タブレット、スマートフォンなど、あらゆるデバイスで快適にプレイできるよう最適化されており、いつでもどこでも気軽にゲームを楽しむことができます。友達や家族と一緒にスコアを競い合って、さらに楽しい時間を過ごしましょう！</p>
+        </section>
+
+        <footer class="footer">
+            <p>© 2024 ドゥードルジャンプゲーム - すべての権利を留保します</p>
+            <p>最高のゲーム体験をお楽しみください！ 🎮</p>
+        </footer>
+    </div>
+
+    <!-- Fullscreen overlay -->
+    <div class="fullscreen-overlay" id="fullscreenOverlay">
+        <button class="close-fullscreen" onclick="exitFullscreen()">✕</button>
+        <iframe id="fullscreenFrame" src=""></iframe>
+    </div>
+
+    <script>
+        function refreshGame() {
+            const gameFrame = document.getElementById('gameFrame');
+            gameFrame.src = gameFrame.src;
+        }
+
+        function toggleFullscreen() {
+            const overlay = document.getElementById('fullscreenOverlay');
+            const fullscreenFrame = document.getElementById('fullscreenFrame');
+            const gameFrame = document.getElementById('gameFrame');
+            
+            overlay.style.display = 'block';
+            fullscreenFrame.src = gameFrame.src;
+            
+            // Request fullscreen on the overlay element
+            if (overlay.requestFullscreen) {
+                overlay.requestFullscreen();
+            } else if (overlay.webkitRequestFullscreen) {
+                overlay.webkitRequestFullscreen();
+            } else if (overlay.msRequestFullscreen) {
+                overlay.msRequestFullscreen();
+            }
+        }
+
+        function exitFullscreen() {
+            const overlay = document.getElementById('fullscreenOverlay');
+            overlay.style.display = 'none';
+            
+            // Exit fullscreen
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (document.webkitExitFullscreen) {
+                document.webkitExitFullscreen();
+            } else if (document.msExitFullscreen) {
+                document.msExitFullscreen();
+            }
+        }
+
+        // Handle ESC key to exit fullscreen
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                exitFullscreen();
+            }
+        });
+
+        // Handle fullscreen change events
+        document.addEventListener('fullscreenchange', function() {
+            if (!document.fullscreenElement) {
+                exitFullscreen();
+            }
+        });
+
+        // Device detection for ad display
+        function isMobileDevice() {
+            return window.innerWidth <= 768;
+        }
+
+        function isTabletDevice() {
+            return window.innerWidth > 768 && window.innerWidth <= 1024;
+        }
+
+        function isPCDevice() {
+            return window.innerWidth > 1024;
+        }
+
+        // Show/hide ads based on device
+        function handleAdDisplay() {
+            const adSpace = document.getElementById('adSpace');
+            if (isMobileDevice()) {
+                adSpace.style.display = 'none';
+            } else {
+                adSpace.style.display = 'flex';
+            }
+        }
+
+        // Initial ad display setup
+        handleAdDisplay();
+
+        // Handle window resize
+        window.addEventListener('resize', handleAdDisplay);
+
+        // Smooth scrolling for better UX
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add loading animation
+        window.addEventListener('load', function() {
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.5s ease-in-out';
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+
+        // Game performance optimization
+        let gameLoadTimeout;
+        const gameFrame = document.getElementById('gameFrame');
+
+        gameFrame.addEventListener('load', function() {
+            clearTimeout(gameLoadTimeout);
+        });
+
+        gameFrame.addEventListener('error', function() {
+            console.warn('Game loading error detected');
+        });
+
+        // Set loading timeout
+        gameLoadTimeout = setTimeout(() => {
+            console.log('Game loading timeout - optimizing...');
+        }, 10000);
+    </script>
+</body>
+</html>
